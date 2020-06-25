@@ -2,7 +2,7 @@ Real-time, horizontally scalable data processing application in a Serverless way
 
 ## Solution overview
 
-![](arch.PNG)
+![](arch.png)
 
 A simple order processing application.
 
