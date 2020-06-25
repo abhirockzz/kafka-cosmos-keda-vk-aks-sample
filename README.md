@@ -24,10 +24,10 @@ Kubernetes components:
 
 ## Azure setup
 
-- [Microsoft Azure](https://azure.microsoft.com/free/?WT.mc_id=devto-blog-abhishgu) account
-- [Create a Kafka enabled Event Hubs namespace](https://docs.microsoft.com/azure/event-hubs/event-hubs-quickstart-kafka-enabled-event-hubs?WT.mc_id=devto-blog-abhishgu#create-a-kafka-enabled-event-hubs-namespace)
-- [Create Azure Cosmos DB components](https://docs.microsoft.com/azure/cosmos-db/create-cosmosdb-resources-portal?WT.mc_id=devto-blog-abhishgu): account, database and container
-- [Create AKS cluster with Virtual Nodes (Virtual Kubelet) feature](https://docs.microsoft.com/azure/aks/virtual-nodes-portal?WT.mc_id=devto-blog-abhishgu)
+- [Microsoft Azure](https://azure.microsoft.com/free/?WT.mc_id=github-kafkacosmoskedavkakssample-abhishgu) account
+- [Create a Kafka enabled Event Hubs namespace](https://docs.microsoft.com/azure/event-hubs/event-hubs-quickstart-kafka-enabled-event-hubs?WT.mc_id=github-kafkacosmoskedavkakssample-abhishgu#create-a-kafka-enabled-event-hubs-namespace)
+- [Create Azure Cosmos DB components](https://docs.microsoft.com/azure/cosmos-db/create-cosmosdb-resources-portal?WT.mc_id=github-kafkacosmoskedavkakssample-abhishgu): account, database and container
+- [Create AKS cluster with Virtual Nodes (Virtual Kubelet) feature](https://docs.microsoft.com/azure/aks/virtual-nodes-portal?WT.mc_id=github-kafkacosmoskedavkakssample-abhishgu)
 
 ## Install KEDA
 
@@ -60,8 +60,8 @@ kubectl logs -f $(kubectl get pod -l=app=keda-operator -o jsonpath='{.items[0].m
 We will deploy the consumer (order processor) app first, followed by the KEDA specific components. Start by cloning the repo:
 
 ```bash
-git clone https://github.com/abhirockzz/keda-eventhubs-kafka
-cd folder
+git clone https://github.com/abhirockzz/kafka-cosmos-keda-vk-aks-sample
+cd kafka-cosmos-keda-vk-aks-sample
 ```
 
 ### Deploy order processing (consumer) app
