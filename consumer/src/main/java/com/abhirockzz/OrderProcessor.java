@@ -25,7 +25,6 @@ public class OrderProcessor implements Runnable {
     private KafkaConsumer<String, OrderEvent> consumer;
     private final AtomicBoolean closed = new AtomicBoolean(false);
     private CosmosClient cosmosClient;
-    private String collectionLink = null;
     String databaseName = null;
     String collectionName = null;
 
@@ -35,8 +34,6 @@ public class OrderProcessor implements Runnable {
         this.cosmosClient = cosmosClient;
         this.databaseName = databaseName;
         this.collectionName = collectionName;
-
-        this.collectionLink = String.format("/dbs/%s/colls/%s", databaseName, collectionName);
     }
 
     public void run() {
@@ -46,8 +43,6 @@ public class OrderProcessor implements Runnable {
 
             while (!closed.get()) {
                 System.out.println("Polling Kafka for Orders");
-                // System.out.println("assignment: " + consumer.assignment());
-                // System.out.println("subscription: " + consumer.subscription());
 
                 ConsumerRecords<String, OrderEvent> records = consumer.poll(Duration.ofMillis(5000));
                 for (ConsumerRecord<String, OrderEvent> record : records) {
@@ -65,14 +60,6 @@ public class OrderProcessor implements Runnable {
                     } catch (Exception e) {
                         Logger.getLogger(OrderProcessor.class.getName()).log(Level.SEVERE,
                                 "Failed to save order " + record.key(), e);
-                    }
-
-                    try {
-                        this.consumer.commitSync();
-                        System.out.println("Committed offset..");
-                    } catch (Exception e) {
-                        Logger.getLogger(OrderProcessor.class.getName()).log(Level.SEVERE, "Failed to commit offset",
-                                e);
                     }
 
                     /*

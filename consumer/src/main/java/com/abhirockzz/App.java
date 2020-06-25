@@ -116,7 +116,6 @@ public class App {
         props.setProperty("sasl.mechanism", "PLAIN");
 
         props.setProperty("group.id", ehConsumerGroup);
-        props.setProperty("enable.auto.commit", "false"); // only commit if record was saved to cosmosdb
         props.setProperty("auto.commit.interval.ms", "1000");
         props.setProperty("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.setProperty("value.deserializer", OrderEventDeserializer.class.getName());
