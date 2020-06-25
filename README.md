@@ -66,6 +66,8 @@ cd kafka-cosmos-keda-vk-aks-sample
 
 ### Deploy order processing (consumer) app
 
+Replace the content in the file `1-secret.yaml` with `base64` encoded values for Event Hubs connection string and Cosmos DB key
+
 Create the `Secret`, followed by consumer app `Deployment`
 
 
@@ -77,11 +79,15 @@ kubectl apply -f deploy/3-consumer.yaml
 kubectl get pod -l=app=order-processor
 ```
 
-The Pod will actually be created in Azure Container Instances (not AKS nodes), thanks to the Virtual Nodes integration. Check the container instances in ACI
+The `Pod` will actually be created in Azure Container Instances (not AKS), thanks to the Virtual Nodes integration. 
+
+> Check the container in ACI
 
 ### Deploy KEDA components
 
-We need the KEDA `TriggerAuthentication` first and then the `ScaledObject`
+Replace Event Hubs, Cosmos DB and other details in the file `4-kafka-scaledobject.yaml`
+
+We need to create KEDA `TriggerAuthentication` first and then the `ScaledObject`
 
 ```bash
 kubectl apply -f deploy/2-trigger-auth.yaml
@@ -90,13 +96,9 @@ kubectl apply -f deploy/4-kafka-scaledobject.yaml
 
 Check HPA - `kubectl get hpa`
 
-Check Consumer app again - it will be removed by KEDA (the promise of scale to zero)
+> Check Consumer app again (`kubectl get deployment order-processor`) - it will be removed by KEDA (the promise of scale to zero)
 
-```
-kubectl get deployment order-processor
-```
-
-## Test
+## Test the solution...
 
 Check pods auto-scaling
 
