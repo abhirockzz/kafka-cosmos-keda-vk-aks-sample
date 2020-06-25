@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-processor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order-processor
+  template:
+    metadata:
+      labels:
+        app: order-processor
+    spec:
+      containers:
+        - name: order-processor
+          image: abhirockzz/kafka-cosmos-processor
+          imagePullPolicy: Always
+          env:
+            - name: EVENTHUBS_CONNECTION_STRING
+              valueFrom:
+                secretKeyRef:
+                  name: app-credentials
+                  key: password
+            - name: COSMOSDB_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-credentials
+                  key: cosmosDBKey
+            - name: KAFKA_BOOTSTRAP_SERVER
+              value: <replace with eventhubs namespace>.servicebus.windows.net:9093
+            - name: EVENTHUBS_CONSUMER_GROUP
+              value: orders-app
+            - name: EVENTHUBS_TOPIC
+              value: <replace with event hubs topic name>
+            - name: COSMOSDB_ENDPOINT
+              value: https://<replace with cosmosdb account name>.documents.azure.com:443/
+            - name: COSMOSDB_DBNAME
+              value: <replace with cosmosdb DB name>
+            - name: COSMOSDB_COLLECTION
+              value: <replace with cosmosdb DB collection/container name>
+      nodeSelector:
+        kubernetes.io/role: agent
+        beta.kubernetes.io/os: linux
+        type: virtual-kubelet
+      tolerations:
+        - key: virtual-kubelet.io/provider
+          operator: Exists
+        - key: azure.com/aci
+          effect: NoSchedule
