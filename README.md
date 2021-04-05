@@ -24,10 +24,10 @@ Kubernetes components:
 
 ## Azure setup
 
-- [Microsoft Azure](https://azure.microsoft.com/free/?WT.mc_id=github-kafkacosmoskedavkakssample-abhishgu) account
-- [Create a Kafka enabled Event Hubs namespace](https://docs.microsoft.com/azure/event-hubs/event-hubs-quickstart-kafka-enabled-event-hubs?WT.mc_id=github-kafkacosmoskedavkakssample-abhishgu#create-a-kafka-enabled-event-hubs-namespace)
-- [Create Azure Cosmos DB components](https://docs.microsoft.com/azure/cosmos-db/create-cosmosdb-resources-portal?WT.mc_id=github-kafkacosmoskedavkakssample-abhishgu): account, database and container
-- [Create AKS cluster with Virtual Nodes (Virtual Kubelet) feature](https://docs.microsoft.com/azure/aks/virtual-nodes-portal?WT.mc_id=github-kafkacosmoskedavkakssample-abhishgu)
+- [Microsoft Azure](https://azure.microsoft.com/free/?WT.mc_id=data-0000-abhishgu) account
+- [Create a Kafka enabled Event Hubs namespace](https://docs.microsoft.com/azure/event-hubs/event-hubs-quickstart-kafka-enabled-event-hubs?WT.mc_id=data-0000-abhishgu#create-a-kafka-enabled-event-hubs-namespace)
+- [Create Azure Cosmos DB components](https://docs.microsoft.com/azure/cosmos-db/create-cosmosdb-resources-portal?WT.mc_id=data-0000-abhishgu): account, database and container
+- [Create AKS cluster with Virtual Nodes (Virtual Kubelet) feature](https://docs.microsoft.com/azure/aks/virtual-nodes-portal?WT.mc_id=data-0000-abhishgu)
 
 ## Install KEDA
 
